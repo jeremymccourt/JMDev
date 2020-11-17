@@ -7,11 +7,12 @@ import datetime
 
 
 master = tk.Tk()
+master.title("Covid Numbers")
 x=1
 
 soup_attrib = "id"
 soup_value = ["main_table_countries_yesterday2","main_table_countries_yesterday","main_table_countries_today"]
-
+display_countries = ['USA', 'UK', 'Spain', 'Poland']
 
 
 
@@ -65,25 +66,27 @@ while(x == 1):
             #print("==========")
         #print(headers[1])
         print(data['USA'])
-        print(data['UK'][2])
+        print(data['UK'])
         #print(covid_table)
 
 
         #print(covid_table_data)
-
-    datal1= "USA" + str(data['USA'][2]) + " " + str(data['USA'][4])
-    datal2= "UK" + str(data['UK'][2]) + " " + str(data['UK'][4])
+    for display in range (0,len(display_countries)):
+        display_data = display_countries[display] + str(data[display_countries[display]][2]) + " " + str(data[display_countries[display]][4])
+        tk.Label(master, text=display_data).grid(row=display+1)
+    #datal1= "USA" + str(data['USA'][2]) + " " + str(data['USA'][4])
+    #datal2= "UK" + str(data['UK'][2]) + " " + str(data['UK'][4])
     print("Current date and time : ")
 
     lasttime = now.strftime("Last updated - %Y-%m-%d %H:%M:%S")
     print(lasttime)
 
     tk.Label(master, text=lasttime).grid(row=0)
-    tk.Label(master, text=datal1).grid(row=1)
-    tk.Label(master, text=datal2).grid(row=2)
+    #tk.Label(master, text=datal1).grid(row=1)
+    #tk.Label(master, text=datal2).grid(row=2)
 
-    e1 = tk.Entry(master)
-    e2 = tk.Entry(master)
+    #e1 = tk.Entry(master)
+    #e2 = tk.Entry(master)
 
 
 
